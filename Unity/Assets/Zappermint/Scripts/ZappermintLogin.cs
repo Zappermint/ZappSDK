@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace Zappermint
 {
@@ -15,6 +16,8 @@ namespace Zappermint
         public LoginSuccessEvent OnSuccess = new LoginSuccessEvent();
         [Tooltip("Event fired when login completes unsuccessfully")]
         public LoginFailEvent OnFail = new LoginFailEvent();
+
+        private Coroutine _loginFallback;
 
         private void OnEnable()
         {
@@ -33,6 +36,27 @@ namespace Zappermint
         public void Login()
         {
             Application.OpenURL($"zappermint://login?c={Cost}&r={Scheme}");
+            _loginFallback = StartCoroutine(OpenStore());
+        }
+
+        private IEnumerator OpenStore()
+        {
+            yield return new WaitForSeconds(2f);
+#if UNITY_EDITOR || UNITY_ANDROID
+            Application.OpenURL($"https://play.google.com/store/apps/details?id=com.ZappermintBV.ZappWallet");
+#elif UNITY_IOS
+            Application.OpenURL($"https://itunes.apple.com/us/app/zappermint/id1234");
+#endif
+            _loginFallback = null;
+        }
+
+        private void OnApplicationPause(bool pause)
+        {
+            if (pause && _loginFallback != null)
+            {
+                StopCoroutine(_loginFallback);
+                _loginFallback = null;
+            }
         }
 
         /// <summary>

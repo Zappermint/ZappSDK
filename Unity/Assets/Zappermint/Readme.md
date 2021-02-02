@@ -93,9 +93,7 @@ private void OnFail(LoginError error)
 
 ## Troubleshooting
 ### [Your app → Zappermint] not working
-If your Login button doesn't open the Zapp Wallet, this is likely because the Zapp Wallet hasn't been installed on the device. 
-
-_We will look into how to automatically open the App Store and Play Store in the future._
+If your Login button opens the play store instead of the Zapp Wallet, the Zapp Wallet hasn't been installed on the device. If `Login()` opens neither, please contact us.
 
 ### [Zappermint → Your app] not working
 If the Zapp Wallet doesn't go back to your app, the Deeplink of your app is not setup properly. Double check the Scheme of the Deeplink in all locations mentioned in the Setup section. For Android, make sure your manifest is valid. Read more about manifests on the [Android Developer guide](https://developer.android.com/guide/topics/manifest/manifest-intro) and [Unity Manual](https://docs.unity3d.com/Manual/android-manifest.html).
