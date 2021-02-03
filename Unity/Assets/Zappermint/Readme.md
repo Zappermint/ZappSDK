@@ -4,7 +4,7 @@ Zappermint relies on Deeplinks to smoothly integrate the login system into your 
 ## Setup
 ### All platforms
 - In your first scene (this is, the scene at build index 0), add a GameObject with the `ZappermintLinkManager` script. 
-- In your Login scene, add a GameObject with the `ZappermintLogin` script. Fill in your Scheme and the Cost of the app.
+- In your Login scene, add a GameObject with the `ZappermintLogin` script. Fill in your App name, App icon, Scheme and the Cost of the app.
 
 ### iOS
 - In the Project Settings > Player > Other Settings, you'll find `Supported URL schemes`. Add your scheme to the list.
@@ -37,6 +37,8 @@ private void Awake()
 
 ### ZappermintLogin
 This component contains the Zapp configuration of your project.
+- App Name: the name of your app. This will be displayed on the login page of the Zapp Wallet app.
+- App Icon: the icon of your app. This will be displayed on the login page of the Zapp Wallet app.
 - Scheme: the scheme used for deeplinking. This must match the scheme in AndroidManifest and/or Project Settings.
 - Cost: the amount of ZAPP users need to stake to play your game ad-free. This will move to the NFT in the future. Read more about the staking concept and effects on [our website](https://zappermint.com).
 - OnLogin: event fired when login completes. The `LoginResult` parameter contains the login data if successful, the login error if not.
