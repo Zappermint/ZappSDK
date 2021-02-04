@@ -1,10 +1,10 @@
-# Zappermint SDK
-Zappermint relies on Deeplinks to smoothly integrate the login system into your app. This is a double deeplink: one from your app to Zappermint, and one from Zappermint back to your app. Therefore, your Unity project must be setup properly to recognize and catch deeplinks on Android and iOS devices.
+# Zapp SDK
+Zappermint relies on Deeplinks to smoothly integrate the login system into your app. This is a double deeplink: one from your app to Zapp, and one from Zapp back to your app. Therefore, your Unity project must be setup properly to recognize and catch deeplinks on Android and iOS devices.
 
 ## Setup
 ### All platforms
-- In your first scene (this is, the scene at build index 0), add a GameObject with the `ZappermintLinkManager` script. 
-- In your Login scene, add a GameObject with the `ZappermintLogin` script. Fill in your App name, App icon, Scheme and the Cost of the app.
+- In your first scene (this is, the scene at build index 0), add a GameObject with the `ZappLinkManager` script. 
+- In your Login scene, add a GameObject with the `ZappLogin` script. Fill in your App name, App icon, Scheme and the Cost of the app.
 
 ### iOS
 - In the Project Settings > Player > Other Settings, you'll find `Supported URL schemes`. Add your scheme to the list.
@@ -15,27 +15,27 @@ Zappermint relies on Deeplinks to smoothly integrate the login system into your 
 _You can find an example AndroidManifest in _`Zappermint/Examples`_. You can copy the _`VIEW intent-filter`_ from there into your own manifest file, or you can copy the whole file to _`Plugins/Android`_ if you don't have one yet. Make sure to replace _`YOUR_SCHEME`_ on line 13 with your own scheme._
 
 ## Usage
-### ZappermintLinkManager
-This is a Singleton that you can access in any script, using `ZappermintLinkManager.Instance`. The Manager will contain the user's data once logged in. 
+### ZappLinkManager
+This is a Singleton that you can access in any script, using `ZappLinkManager.Instance`. The Manager will contain the user's data once logged in. 
 ```CSharp
-string wallet = ZappermintLinkManager.Instance.Account.wallet; // Wallet's public address
-string name = ZappermintLinkManager.Instance.Account.name; // Name of the Wallet
+string wallet = ZappLinkManager.Instance.Account.wallet; // Wallet's public address
+string name = ZappLinkManager.Instance.Account.name; // Name of the Wallet
 ```
 Use the `IsLoggedIn` state to hide ads when logged in. Below is an example of how you could implement this.
 
 ```CSharp
-// Note: AdManager is just an example. It doesn't exist in the Zappermint SDK.
+// Note: AdManager is just an example. It doesn't exist in the Zapp SDK.
 
 private void Awake() 
 {
-    if (ZappermintLinkManager.Instance.IsLoggedIn) // True if login was successful
+    if (ZappLinkManager.Instance.IsLoggedIn) // True if login was successful
     {
         AdManager.RemoveAds(); // Remove ads from the UI
     }
 }
 ```
 
-### ZappermintLogin
+### ZappLogin
 This component contains the Zapp configuration of your project.
 - App Name: the name of your app. This will be displayed on the login page of the Zapp Wallet app.
 - App Icon: the icon of your app. This will be displayed on the login page of the Zapp Wallet app.
@@ -49,9 +49,9 @@ The script has a `Login()` function that calls the Zapp Wallet deeplink. You can
 
 The events can be used through the Inspector, or in code. An example of how to use it in code:
 ```CSharp
-// Note: AdManager, Account and ErrorManager are just examples. These don't exist in the Zappermint SDK.
+// Note: AdManager, Account and ErrorManager are just examples. These don't exist in the Zapp SDK.
 
-[SerializeField] private ZappermintLogin _login;
+[SerializeField] private ZappLogin _login;
 
 private void Start() 
 {
@@ -68,7 +68,7 @@ private void OnLogin(LoginResult result)
     {
         // Remove ads from the UI
         AdManager.RemoveAds(); 
-        // Display the Zappermint account name
+        // Display the Zapp account name
         Account.SetName(result.data.Name);
     }
     else
@@ -82,7 +82,7 @@ private void OnSuccess(LoginData data)
 {
     // Remove ads from the UI
     AdManager.RemoveAds();
-    // Display the Zappermint account name
+    // Display the Zapp account name
     Account.SetName(data.name);
 }
 
@@ -94,10 +94,10 @@ private void OnFail(LoginError error)
 ```
 
 ## Troubleshooting
-### [Your app → Zappermint] not working
+### [Your app → Zapp] not working
 If your Login button opens the play store instead of the Zapp Wallet, the Zapp Wallet hasn't been installed on the device. If `Login()` opens neither, please contact us.
 
-### [Zappermint → Your app] not working
+### [Zapp → Your app] not working
 If the Zapp Wallet doesn't go back to your app, the Deeplink of your app is not setup properly. Double check the Scheme of the Deeplink in all locations mentioned in the Setup section. For Android, make sure your manifest is valid. Read more about manifests on the [Android Developer guide](https://developer.android.com/guide/topics/manifest/manifest-intro) and [Unity Manual](https://docs.unity3d.com/Manual/android-manifest.html).
 
 ### Other issues
