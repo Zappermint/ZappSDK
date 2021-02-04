@@ -1,4 +1,4 @@
-# ZappermintSDK
+# Zapp SDK
 SDK to integrate Zappermint into mobile apps
 
 ## Unity
