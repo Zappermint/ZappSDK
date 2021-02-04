@@ -46,7 +46,6 @@ namespace Zappermint
             else
             {
                 AppName = HttpUtility.UrlEncode(AppName);
-                //AppName = Regex.Replace(AppName, @"[^a-zA-Z0-9 -_]", "_");
             }
 
             if (AppIcon == null)
@@ -73,8 +72,6 @@ namespace Zappermint
                 var bytes = copy.EncodeToJPG();
                 _icon64 = Convert.ToBase64String(bytes);
             }
-
-            Debug.Log($"zappermint://login?c={Cost}&r={Scheme}&n={AppName}&i={_icon64}");
         }
 
         /// <summary>
@@ -82,6 +79,7 @@ namespace Zappermint
         /// </summary>
         public void Login()
         {
+            Debug.Log($"zappermint://login?c={Cost}&r={Scheme}&n={AppName}&i={_icon64}");
             Application.OpenURL($"zappermint://login?c={Cost}&r={Scheme}&n={AppName}&i={_icon64}");
             _loginFallback = StartCoroutine(OpenStore());
         }
@@ -106,10 +104,6 @@ namespace Zappermint
             }
         }
 
-        /// <summary>
-        /// Handles the Deeplink for logging in
-        /// </summary>
-        /// <param name="link"></param>
         private void LinkHandler(DeepLink link)
         {
             ZappLinkManager manager = ZappLinkManager.Instance;

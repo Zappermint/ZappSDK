@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web;
 using UnityEngine.Events;
 
 namespace Zappermint
@@ -26,7 +27,7 @@ namespace Zappermint
         public LoginData(string wallet, string name)
         {
             this.wallet = wallet;
-            this.name = name;
+            this.name = HttpUtility.UrlDecode(name);
         }
     }
 
@@ -35,7 +36,7 @@ namespace Zappermint
         public string message { get; }
         public LoginError(string message)
         {
-            this.message = message;
+            this.message = HttpUtility.UrlDecode(message);
         }
     }
 

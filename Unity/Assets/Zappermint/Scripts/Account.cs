@@ -6,8 +6,8 @@
         public string name { get; }
         public Account(LoginData data)
         {
-            this.wallet = data.wallet;
-            this.name = data.name;
+            wallet = data.wallet;
+            name = data.name;
         }
     }
 }
