@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Zappermint
 {
-    public class ZappermintLogin : MonoBehaviour
+    public class ZappLogin : MonoBehaviour
     {
         [Tooltip("App name. Will be displayed on the Zapp Wallet login page.")]
         public string AppName = "My App";
@@ -28,12 +28,12 @@ namespace Zappermint
 
         private void OnEnable()
         {
-            ZappermintLinkManager.Instance.Handler += LinkHandler;
+            ZappLinkManager.Instance.Handler += LinkHandler;
         }
 
         private void OnDisable()
         {
-            ZappermintLinkManager.Instance.Handler -= LinkHandler;
+            ZappLinkManager.Instance.Handler -= LinkHandler;
 
         }
 
@@ -41,7 +41,7 @@ namespace Zappermint
         {
             if (string.IsNullOrEmpty(AppName))
             {
-                Debug.LogWarning("Please fill in the App Name in the ZappermintLogin script");
+                Debug.LogWarning("Please fill in the App Name in the ZappLogin script");
             }
             else
             {
@@ -51,7 +51,7 @@ namespace Zappermint
 
             if (AppIcon == null)
             {
-                Debug.LogWarning("Please fill in the App Icon in the ZappermintLogin script");
+                Debug.LogWarning("Please fill in the App Icon in the ZappLogin script");
             }
             else
             {
@@ -112,7 +112,7 @@ namespace Zappermint
         /// <param name="link"></param>
         private void LinkHandler(DeepLink link)
         {
-            ZappermintLinkManager manager = ZappermintLinkManager.Instance;
+            ZappLinkManager manager = ZappLinkManager.Instance;
             LoginResult result;
             switch (link.host)
             {

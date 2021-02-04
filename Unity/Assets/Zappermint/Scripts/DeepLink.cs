@@ -62,7 +62,7 @@ namespace Zappermint
             _url = UnityEditor.EditorGUILayout.TextField("URL", _url);
             if (GUILayout.Button("Test"))
             {
-                ZappermintLinkManager.Instance.OnDeepLinkActivated(_url);
+                ZappLinkManager.Instance.OnDeepLinkActivated(_url);
             }
         }
     }

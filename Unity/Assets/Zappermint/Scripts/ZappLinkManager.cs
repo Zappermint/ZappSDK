@@ -5,9 +5,9 @@ using UnityEngine;
 namespace Zappermint
 {
     [DefaultExecutionOrder(-1000000)]
-    public class ZappermintLinkManager : MonoBehaviour
+    public class ZappLinkManager : MonoBehaviour
     {
-        public static ZappermintLinkManager Instance { get; private set; }
+        public static ZappLinkManager Instance { get; private set; }
         public Account Account { get; internal set; }
         public bool IsLoggedIn => Account != null;
         public Action<DeepLink> Handler { get; internal set; }
