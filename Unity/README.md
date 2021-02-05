@@ -93,6 +93,17 @@ private void OnFail(LoginError error)
 }
 ```
 
+## Testing
+The Zapp SDK will add a Menu Item to your Unity Project. In the menu `Zappermint`, select `Debug Deep Link`. In the window that opened, paste the URL below into the `URL` field, run your app and click on `Test`.
+```
+// Replace YOUR_SCHEME with your app's deeplink scheme!
+// Test successful login
+YOUR_SCHEME://zappermint.login.success?w=0xd440809b78553896271699EF075717F2bC28B27E&n=Test+Wallet
+
+// Test failed login
+YOUR_SCHEME://zappermint.login.fail?e=Canceled
+```
+
 ## Troubleshooting
 ### [Your app → Zapp] not working
 If your Login button opens the play store instead of the Zapp Wallet, the Zapp Wallet hasn't been installed on the device. If `Login()` opens neither, please contact us.
@@ -101,9 +112,6 @@ If your Login button opens the play store instead of the Zapp Wallet, the Zapp W
 If the Zapp Wallet doesn't go back to your app, the Deeplink of your app is not setup properly. Double check the Scheme of the Deeplink in all locations mentioned in the Setup section. For Android, make sure your manifest is valid. Read more about manifests on the [Android Developer guide](https://developer.android.com/guide/topics/manifest/manifest-intro) and [Unity Manual](https://docs.unity3d.com/Manual/android-manifest.html).
 
 ### Other issues
-Contact Zappermint
-- [Email](mailto:hello@zappermint.com)
-- [Discord](https://discord.gg/4R28ZVQgVk)
-- [Telegram](https://t.me/Zappermint)
-- [Twitter](https://twitter.com/ZappermintApp)
-- [GitHub](https://github.com/Zappermint/ZappermintSDK)
+Contact Zappermint:
+
+**[Email](mailto:hello@zappermint.com) | [Discord](https://discord.gg/4R28ZVQgVk) | [Telegram](https://t.me/Zappermint) | [Twitter](https://twitter.com/ZappermintApp) | [GitHub](https://github.com/Zappermint/ZappermintSDK)**
