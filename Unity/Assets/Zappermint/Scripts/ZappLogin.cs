@@ -88,9 +88,9 @@ namespace Zappermint
         {
             yield return new WaitForSeconds(2f);
 #if UNITY_EDITOR || UNITY_ANDROID
-            Application.OpenURL($"https://play.google.com/store/apps/details?id=com.ZappermintBV.ZappWallet");
+            Application.OpenURL($"https://play.google.com/store/apps/details?id=com.Zappermint.ZappWallet");
 #elif UNITY_IOS
-            Application.OpenURL($"https://itunes.apple.com/us/app/zappermint/id1234");
+            Application.OpenURL($"https://apps.apple.com/us/app/zapp-wallet/id1554849393");
 #endif
             _loginFallback = null;
         }
